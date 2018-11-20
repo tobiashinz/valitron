@@ -7,20 +7,16 @@
          convertWarningsToExceptions="true"
          processIsolation="false"
          stopOnFailure="false"
-         syntaxCheck="false"
          bootstrap="tests/bootstrap.php"
 >
-  <testsuites>
-    <testsuite name="Valitron Test Suite">
-      <directory suffix="Test.php">tests/Valitron</directory>
-    </testsuite>
-  </testsuites>
-  <filter>
-    <whitelist>
-      <directory suffix=".php">src/</directory>
-    </whitelist>
-      <blacklist>
-        <directory suffix=".php">vendor/</directory>
-      </blacklist>
+    <testsuites>
+        <testsuite name="Valitron Test Suite">
+            <directory suffix="Test.php">tests/Valitron</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">src/</directory>
+        </whitelist>
     </filter>
 </phpunit>

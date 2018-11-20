@@ -6,52 +6,52 @@ class MapRulesTest extends BaseTestCase
 {
     public function testMapSingleFieldRules()
     {
-        $rules = array(
+        $rules = [
             'required',
-            array('lengthMin', 4)
-        );
+            ['lengthMin', 4],
+        ];
 
-        $v = new Validator(array());
+        $v = new Validator([]);
         $v->mapFieldRules('myField', $rules);
         $this->assertFalse($v->validate());
         $this->assertEquals(2, sizeof($v->errors('myField')));
 
-        $v2 = new Validator(array('myField' => 'myVal'));
+        $v2 = new Validator(['myField' => 'myVal']);
         $v2->mapFieldRules('myField', $rules);
         $this->assertTrue($v2->validate());
     }
 
     public function testSingleFieldDot()
     {
-        $v = new Valitron\Validator(array(
-            'settings' => array(
-                array('threshold' => 50),
-                array('threshold' => 90)
-            )
-        ));
-        $v->mapFieldRules('settings.*.threshold', array(
-            array('max', 50)
-        ));
+        $v = new Valitron\Validator([
+            'settings' => [
+                ['threshold' => 50],
+                ['threshold' => 90],
+            ],
+        ]);
+        $v->mapFieldRules('settings.*.threshold', [
+            ['max', 50],
+        ]);
 
         $this->assertFalse($v->validate());
     }
 
     public function testMapMultipleFieldsRules()
     {
-        $rules = array(
-            'myField1' => array(
+        $rules = [
+            'myField1' => [
                 'required',
-                array('lengthMin', 4)
-            ),
-            'myField2' => array(
+                ['lengthMin', 4],
+            ],
+            'myField2' => [
                 'required',
-                array('lengthMin', 5)
-            )
-        );
+                ['lengthMin', 5],
+            ],
+        ];
 
-        $v = new Validator(array(
-            'myField1' => 'myVal'
-        ));
+        $v = new Validator([
+            'myField1' => 'myVal',
+        ]);
         $v->mapFieldsRules($rules);
 
         $this->assertFalse($v->validate());
@@ -61,13 +61,13 @@ class MapRulesTest extends BaseTestCase
 
     public function testCustomMessageSingleField()
     {
-        $rules = array(
-            array('lengthMin', 14, 'message' => 'My Custom Error')
-        );
+        $rules = [
+            ['lengthMin', 14, 'message' => 'My Custom Error'],
+        ];
 
-        $v = new Validator(array(
-            'myField' => 'myVal'
-        ));
+        $v = new Validator([
+            'myField' => 'myVal',
+        ]);
         $v->mapFieldRules('myField', $rules);
         $this->assertFalse($v->validate());
         $errors = $v->errors('myField');
@@ -76,19 +76,19 @@ class MapRulesTest extends BaseTestCase
 
     public function testCustomMessageMultipleFields()
     {
-        $rules = array(
-            'myField1' => array(
-                array('lengthMin', 14, 'message' => 'My Custom Error 1')
-            ),
-            'myField2' => array(
-                array('lengthMin', 14, 'message' => 'My Custom Error 2')
-            )
-        );
+        $rules = [
+            'myField1' => [
+                ['lengthMin', 14, 'message' => 'My Custom Error 1'],
+            ],
+            'myField2' => [
+                ['lengthMin', 14, 'message' => 'My Custom Error 2'],
+            ],
+        ];
 
-        $v = new Validator(array(
+        $v = new Validator([
             'myField1' => 'myVal',
             'myField2' => 'myVal',
-        ));
+        ]);
 
         $v->mapFieldsRules($rules);
         $this->assertFalse($v->validate());
