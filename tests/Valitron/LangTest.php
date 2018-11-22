@@ -1,7 +1,5 @@
 <?php
 
-use Valitron\Validator;
-
 class LangTest extends BaseTestCase
 {
     protected function getLangDir()

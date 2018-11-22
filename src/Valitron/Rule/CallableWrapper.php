@@ -1,10 +1,10 @@
 <?php
 
-namespace Valitron\Validator;
+namespace Valitron\Rule;
 
 use Valitron\Data\Fields;
 
-class CallableWrapper implements Validator
+class CallableWrapper implements Rule
 {
     private $name;
     private $handler;

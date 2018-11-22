@@ -1,7 +1,5 @@
 <?php
 
-use Valitron\Validator;
-
 class StaticVsInstanceTest extends BaseTestCase
 {
     public function testInstanceOverrideStaticLang()

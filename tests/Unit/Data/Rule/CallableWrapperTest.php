@@ -1,10 +1,10 @@
 <?php
 
-namespace Valitron\Test\Unit\Data\Validator;
+namespace Valitron\Test\Unit\Data\Rule;
 
 use PHPUnit\Framework\TestCase;
 use Valitron\Data\Fields;
-use Valitron\Validator\CallableWrapper;
+use Valitron\Rule\CallableWrapper;
 
 class CallableWrapperTest extends TestCase
 {

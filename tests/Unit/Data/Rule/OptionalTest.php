@@ -1,12 +1,12 @@
 <?php
 
-namespace Valitron\Test\Unit\Data\Validator;
+namespace Valitron\Test\Unit\Data\Rule;
 
 use PHPUnit\Framework\TestCase;
 use Valitron\Data\Fields;
-use Valitron\Validator\Optional;
+use Valitron\Rule\Optional;
 
-class OptionalValidatorTest extends TestCase
+class OptionalTest extends TestCase
 {
     public function testOptionalValidatorAlwaysReturnsTrue()
     {

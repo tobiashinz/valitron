@@ -1,10 +1,10 @@
 <?php
 
-namespace Valitron\Validator;
+namespace Valitron\Rule;
 
 use Valitron\Data\Fields;
 
-class Optional implements Validator
+class Optional implements Rule
 {
     public function getName(): string
     {

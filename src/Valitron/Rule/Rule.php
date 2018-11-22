@@ -1,10 +1,10 @@
 <?php
 
-namespace Valitron\Validator;
+namespace Valitron\Rule;
 
 use Valitron\Data\Fields;
 
-interface Validator
+interface Rule
 {
     /**
      * Get the (human readable) name for this validator.
