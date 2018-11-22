@@ -11,7 +11,7 @@ class Fields
 {
     private $data;
 
-    public function __construct(array $input)
+    public function __construct(array $input = [])
     {
         $this->data = $input;
     }
