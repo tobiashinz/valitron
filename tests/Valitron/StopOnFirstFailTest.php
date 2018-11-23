@@ -1,5 +1,5 @@
 <?php
-
+use Valitron\Validator;
 class StopOnFirstFail extends BaseTestCase
 {
     public function testStopOnFirstFail()

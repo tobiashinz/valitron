@@ -1,4 +1,5 @@
 <?php
+use Valitron\Validator;
 
 function callbackTestFunction($item, $value)
 {

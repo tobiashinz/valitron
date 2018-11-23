@@ -1,5 +1,5 @@
 <?php
-
+use Valitron\Validator;
 class MapRulesTest extends BaseTestCase
 {
     public function testMapSingleFieldRules()

@@ -1,6 +1,6 @@
 <?php
 
-use Valitron\Rule;
+use Valitron\Validator;
 
 class ValidateTest extends BaseTestCase
 {

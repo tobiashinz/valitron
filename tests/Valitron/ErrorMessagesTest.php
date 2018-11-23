@@ -1,5 +1,5 @@
 <?php
-
+use Valitron\Validator;
 class ErrorMessagesTest extends BaseTestCase
 {
     public function testErrorMessageIncludesFieldName()
