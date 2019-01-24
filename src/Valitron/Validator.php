@@ -84,6 +84,20 @@ class Validator
     protected $stop_on_first_fail = false;
 
     /**
+     * @var bool
+     */
+    protected $guard_input_type = false;
+
+    /**
+     * @var bool
+     */
+    protected $cast_input_type = false;
+
+    /**
+     * @var bool
+     */
+    protected $throw_exception_for_invalid_input = false;
+    /**
      * Setup validation
      *
      * @param  array $data
@@ -608,6 +622,10 @@ class Validator
      */
     protected function validateUrl($field, $value)
     {
+        $value = $this->guardTypeString($field, 'url', $value);
+        if ($value === false){
+            return false;
+        }
         foreach ($this->validUrlPrefixes as $prefix) {
             if (strpos($value, $prefix) !== false) {
                 return filter_var($value, \FILTER_VALIDATE_URL) !== false;
@@ -1106,6 +1124,22 @@ class Validator
         $this->stop_on_first_fail = (bool)$stop;
     }
 
+
+    public function guardInputTypes($guard = true){
+        $this->guard_input_type = (bool) $guard;
+        return $this;
+    }
+
+    public function castInputTypes($cast = true){
+        $this->cast_input_type = (bool) $cast;
+        return $this;
+    }
+
+    public function throwInvalidArgumentException($throw = true){
+        $this->throw_exception_for_invalid_input = (bool) $throw;
+        return $this;
+    }
+
     /**
      * Returns all rule callbacks, the static and instance ones.
      *
@@ -1415,5 +1449,24 @@ class Validator
         array_map(function ($field) use ($rules, $me) {
             $me->mapFieldRules($field, $rules[$field]);
         }, array_keys($rules));
+    }
+
+
+    private function guardTypeString($fieldName, $ruleName, $providedValue){
+        if (! $this->guard_input_type || is_string($providedValue)){
+            return $providedValue;
+        }
+
+        if ($this->cast_input_type){
+            try{
+                return (string) $providedValue;
+            } catch (\Exception $exception){
+        //resume
+            }
+        }
+        if ($this->throw_exception_for_invalid_input){
+            throw new \InvalidArgumentException(sprintf("Rule %s on field %s expects value to be string, %s given",$ruleName, $fieldName, gettype($providedValue)));
+        }
+        return false;
     }
 }
